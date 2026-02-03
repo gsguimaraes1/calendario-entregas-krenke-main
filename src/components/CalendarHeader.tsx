@@ -1,5 +1,5 @@
+import React from 'react';
 import { ChevronLeft, ChevronRight, Calendar as CalendarIcon, Download, TrendingUp, RotateCw } from 'lucide-react';
-import { UserButton } from '@clerk/clerk-react';
 
 interface CalendarHeaderProps {
   currentDate: Date;
@@ -108,10 +108,6 @@ const CalendarHeader: React.FC<CalendarHeaderProps> = ({
           >
             Hoje
           </button>
-
-          <div className="flex items-center justify-center bg-white/5 p-1 rounded-full border border-white/10 ml-2">
-            <UserButton appearance={{ baseTheme: undefined }} afterSignOutUrl="/" />
-          </div>
         </div>
       </div>
     </div>
