@@ -15,6 +15,7 @@ const Calendar: React.FC = () => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [viewMode, setViewMode] = useState<'day' | 'week' | 'month' | 'year'>('week');
+  const [isRotated, setIsRotated] = useState(false);
 
   const monthNames = [
     'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
@@ -172,8 +173,8 @@ const Calendar: React.FC = () => {
   const days = getDaysInView(currentDate, viewMode);
 
   return (
-    <div className="h-screen w-screen bg-[#050505] overflow-hidden flex flex-col p-6 gap-6 dark">
-      <div className="flex-none h-auto">
+    <div className={`fixed inset-0 bg-[#050505] overflow-hidden flex flex-col p-2 sm:p-4 md:p-6 gap-2 sm:gap-4 dark transition-all duration-500 ${isRotated ? 'force-landscape is-rotated' : ''}`}>
+      <div className="flex-none">
         <CalendarHeader
           currentDate={currentDate}
           onNavigate={navigateMonth}
@@ -183,6 +184,8 @@ const Calendar: React.FC = () => {
           monthNames={monthNames}
           viewMode={viewMode}
           onViewModeChange={setViewMode}
+          isRotated={isRotated}
+          onToggleRotation={() => setIsRotated(!isRotated)}
         />
       </div>
 
@@ -197,7 +200,7 @@ const Calendar: React.FC = () => {
         />
       </div>
 
-      <div className="flex-none h-auto">
+      <div className="flex-none">
         <CalendarStats
           events={events}
           currentDate={currentDate}

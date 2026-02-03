@@ -80,8 +80,8 @@
 
   body {
     @apply bg-background text-foreground overflow-hidden font-sans;
-    font-size: 1.125rem;
-    /* 18px base for TV */
+    font-size: 0.95rem;
+    /* Adjusted base for better 1080p fit */
   }
 }
 
@@ -115,6 +115,31 @@
 
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.2);
+  }
+
+  .force-landscape {
+    position: fixed !important;
+    top: 0 !important;
+    left: 100% !important;
+    width: 100vh !important;
+    height: 100vw !important;
+    transform: rotate(90deg) !important;
+    transform-origin: top left !important;
+    z-index: 99999 !important;
+    overflow: hidden !important;
+  }
+
+  /* Help components adapt when forces to landscape */
+  .is-rotated .mobile-row-to-row {
+    flex-direction: row !important;
+  }
+
+  .is-rotated .mobile-hidden {
+    display: none !important;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
   }
 }
 

@@ -26,32 +26,32 @@ const CalendarDay: React.FC<CalendarDayProps> = ({
   return (
     <div
       onClick={() => onDateClick(day.date)}
-      className={`relative flex-1 p-8 border-r border-white/5 last:border-r-0 transition-all duration-300 group overflow-y-auto custom-scrollbar ${day.isCurrentMonth ? 'bg-transparent' : 'bg-black/40 grayscale-[0.5] opacity-50'
-        } ${isToday ? 'bg-[#2563eb]/10 ring-inset ring-2 ring-[#2563eb]/40' : ''} ${hasEvents && day.isCurrentMonth ? 'cursor-pointer hover:bg-white/5' : 'cursor-default'
+      className={`relative flex-1 p-1 sm:p-2 md:p-4 border-r border-white/5 last:border-r-0 transition-all duration-300 group overflow-y-auto custom-scrollbar ${day.isCurrentMonth ? 'bg-transparent' : 'bg-black/40 grayscale-[0.5] opacity-50'
+        } ${isToday ? 'bg-[#2563eb]/10 ring-inset ring-1 sm:ring-2 ring-[#2563eb]/40' : ''} ${hasEvents && day.isCurrentMonth ? 'cursor-pointer hover:bg-white/5' : 'cursor-default'
         }`}
     >
       {/* Visual Indicator for Today */}
       {isToday && (
-        <div className="absolute inset-x-0 top-0 h-2 bg-[#2563eb] shadow-[0_0_30px_#2563eb] z-20"></div>
+        <div className="absolute inset-x-0 top-0 h-1 sm:h-1.5 bg-[#2563eb] shadow-[0_0_20px_#2563eb] z-20"></div>
       )}
 
-      <div className={`flex items-start justify-between mb-8 ${day.isCurrentMonth ? 'text-white' : 'text-white/40'
+      <div className={`flex flex-col sm:flex-row items-center sm:items-start justify-between mb-1 sm:mb-3 md:mb-4 ${day.isCurrentMonth ? 'text-white' : 'text-white/40'
         }`}>
-        <div className="flex flex-col">
-          <span className={`font-black italic tracking-tighter leading-none ${isDayView ? 'text-9xl' : 'text-6xl'
+        <div className="flex flex-col items-center sm:items-start">
+          <span className={`font-black italic tracking-tighter leading-none ${isDayView ? 'text-4xl sm:text-7xl md:text-8xl' : 'text-lg sm:text-2xl md:text-4xl'
             } ${isToday ? 'text-[#2563eb]' : ''}`}>
             {day.date.getDate().toString().padStart(2, '0')}
           </span>
-          <span className={`font-black opacity-40 uppercase tracking-[0.4em] mt-4 ${isDayView ? 'text-2xl' : 'text-xs'
-            }`}>
-            {day.date.toLocaleDateString('pt-BR', { month: 'long' })}
+          <span className={`font-black opacity-40 uppercase tracking-[0.1em] sm:tracking-[0.2em] md:tracking-[0.4em] mt-0.5 sm:mt-1 md:mt-2 ${isDayView ? 'text-xs sm:text-lg md:text-2xl' : 'text-[6px] sm:text-[8px] md:text-[10px]'
+            } truncate max-w-full`}>
+            {day.date.toLocaleDateString('pt-BR', { month: 'short' })}
           </span>
         </div>
 
         {hasEvents && (
-          <span className={`font-black bg-[#EC008C] text-white rounded-2xl shadow-xl transform -rotate-3 ${isDayView ? 'px-8 py-4 text-3xl' : 'px-4 py-2 text-sm'
-            }`}>
-            {dayEvents.length} {dayEvents.length === 1 ? 'PEDIDO' : 'PEDIDOS'}
+          <span className={`font-black bg-[#EC008C] text-white rounded sm:rounded-lg md:rounded-xl shadow-xl transform -rotate-3 ${isDayView ? 'px-3 py-1 sm:px-6 sm:py-3 md:px-8 md:py-4 text-xs sm:text-2xl md:text-3xl' : 'px-1 py-0.5 sm:px-2 sm:py-1 text-[6px] sm:text-[8px] md:text-xs'
+            } whitespace-nowrap`}>
+            {dayEvents.length} <span className="hidden sm:inline">{dayEvents.length === 1 ? 'PEDIDO' : 'PEDIDOS'}</span>
           </span>
         )}
       </div>
