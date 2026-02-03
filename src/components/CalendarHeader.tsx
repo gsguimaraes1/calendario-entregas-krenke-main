@@ -1,5 +1,5 @@
-import React from 'react';
-import { ChevronLeft, ChevronRight, Calendar as CalendarIcon, Download, TrendingUp, RotateCw } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Calendar as CalendarIcon, Download, TrendingUp, RotateCw, LogOut } from 'lucide-react';
+import { useLogto } from '@logto/react';
 
 interface CalendarHeaderProps {
   currentDate: Date;
@@ -26,6 +26,8 @@ const CalendarHeader: React.FC<CalendarHeaderProps> = ({
   isRotated,
   onToggleRotation
 }) => {
+  const { signOut } = useLogto();
+
   const getViewTitle = () => {
     if (viewMode === 'year') return currentDate.getFullYear().toString();
     if (viewMode === 'day') return `${currentDate.getDate()} de ${monthNames[currentDate.getMonth()].toUpperCase()} ${currentDate.getFullYear()}`;
@@ -107,6 +109,15 @@ const CalendarHeader: React.FC<CalendarHeaderProps> = ({
             className="bg-white/5 hover:bg-white/10 text-white px-3 md:px-4 py-1.5 md:py-2 rounded-lg transition-all font-bold text-[10px] md:text-xs border border-white/10 uppercase tracking-widest active:scale-95"
           >
             Hoje
+          </button>
+
+          <button
+            onClick={() => signOut('http://localhost:5173/')}
+            className="p-2 md:p-2 bg-red-500/10 hover:bg-red-500/20 text-red-500 rounded-lg transition-all border border-red-500/20 flex items-center gap-2 active:scale-95"
+            title="Sair"
+          >
+            <LogOut className="w-4 h-4 md:w-5 md:h-5" />
+            <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest hidden sm:inline">Sair</span>
           </button>
         </div>
       </div>
