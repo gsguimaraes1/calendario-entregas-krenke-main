@@ -31,7 +31,7 @@ const ProtectedContent = () => {
           <h1 className="text-2xl font-black text-white uppercase italic tracking-tighter mb-2">Monitor de Entregas</h1>
           <p className="text-gray-400 mb-8 text-sm">Acesse o painel para gerenciar as entregas da Krenke.</p>
           <button
-            onClick={() => signIn('http://localhost:5173/callback')}
+            onClick={() => signIn(`${window.location.origin}/callback`)}
             className="w-full bg-[#2563eb] hover:bg-[#1d4ed8] text-white font-bold py-3 rounded-xl transition-all shadow-lg shadow-blue-500/20 uppercase tracking-widest text-sm"
           >
             Entrar no Sistema

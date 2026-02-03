@@ -112,7 +112,7 @@ const CalendarHeader: React.FC<CalendarHeaderProps> = ({
           </button>
 
           <button
-            onClick={() => signOut('http://localhost:5173/')}
+            onClick={() => signOut(window.location.origin)}
             className="p-2 md:p-2 bg-red-500/10 hover:bg-red-500/20 text-red-500 rounded-lg transition-all border border-red-500/20 flex items-center gap-2 active:scale-95"
             title="Sair"
           >
