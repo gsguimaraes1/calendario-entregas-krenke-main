@@ -15,6 +15,11 @@ const queryClient = new QueryClient();
 const ProtectedContent = () => {
   const { isAuthenticated, isLoading, signIn } = useLogto();
 
+  // Se estiver em modo de desenvolvimento (npm run dev), pula o login
+  if (import.meta.env.DEV) {
+    return <Index />;
+  }
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-[#050505] flex items-center justify-center">
